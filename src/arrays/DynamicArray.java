@@ -1,5 +1,7 @@
 package arrays;
 
+import java.util.Scanner;
+
 public class DynamicArray {
     private int array[];
     private int capacity;
