@@ -1,8 +1,9 @@
 package linkedlist;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class LinkedList {
+public class LinkedList<Item> implements Iterable<Item> {
     Node head;
 
 //     returns number of data elements in list
@@ -24,7 +25,7 @@ public class LinkedList {
     }
 
 //    returns the value of the nth item (starting at 0 for first)
-    public int valueAt(int index) {
+    public Item valueAt(int index) {
         Node current = head;
 
         int i;
@@ -36,23 +37,23 @@ public class LinkedList {
             System.out.println("index out of bound");
             System.exit(0);
         }
-        return current.item;
+        return (Item) current.item;
     }
 
 //    adds an item to the front of the list
-    public void pushFront(int item) {
+    public void pushFront(Item item) {
         Node newNode = new Node(item);
         newNode.next = head;
         this.head = newNode;
     }
 
 //    remove front item and return its value
-    public int popFront() {
+    public Item popFront() {
         if (this.empty()) {
             System.out.println("List is empty");
             System.exit(0);
         }
-        int value = head.item;
+        Item value = (Item )head.item;
         this.head = head.next;
         return value;
     }
@@ -73,7 +74,7 @@ public class LinkedList {
     }
 
 //    removes end item and returns its value
-    public int popBack() {
+    public Item popBack() {
         if (this.empty()) {
             System.out.println("List is empty");
             System.exit(0);
@@ -87,7 +88,7 @@ public class LinkedList {
             current = current.next;
         }
 
-        int value = current.item;
+        Item value = (Item) current.item;
 
         if (prev == null) { /*Chi co 1 ptu*/
             this.head = null;
@@ -99,17 +100,17 @@ public class LinkedList {
     }
 
 //    get value of front item
-    public int front() {
+    public Item front() {
         if (this.empty()) {
             System.out.println("List is empty");
             System.exit(0);
         }
 
-        return this.head.item;
+        return (Item) this.head.item;
     }
 
 //    get value of end item
-    public int back() {
+    public Item back() {
         if (this.empty()) {
             System.out.println("List is empty");
             System.exit(0);
@@ -120,7 +121,7 @@ public class LinkedList {
             current = current.next;
         }
 
-        return current.item;
+        return (Item) current.item;
     }
 
 //    insert value at index, so current item at that index is pointed to by new item at index
@@ -180,7 +181,7 @@ public class LinkedList {
     }
 
 //    returns the value of the node at nth position from the end of the list
-    public int valueNFromEnd(int n) {
+    public Item valueNFromEnd(int n) {
         if (this.empty()) {
             System.out.println("List is empty");
             System.exit(0);
@@ -204,7 +205,7 @@ public class LinkedList {
             match = match.next;
         }
 
-        return match.item;
+        return (Item)match.item;
 
     }
 
@@ -225,7 +226,7 @@ public class LinkedList {
     }
 
 //    removes the first item in the list with this value
-    public void removeValue(int value) {
+    public void removeValue(Item value) {
         Node prev = null;
         Node current = head;
 
@@ -244,7 +245,7 @@ public class LinkedList {
     }
 
     public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.pushBack(5);
         linkedList.pushBack(6);
         linkedList.insert(0,4);
@@ -260,5 +261,10 @@ public class LinkedList {
         System.out.println(linkedList.empty());
         //System.out.println(linkedList.valueAt(5));
         System.out.println(linkedList.valueNFromEnd(1));
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return null;
     }
 }
